@@ -4,9 +4,11 @@ from Mlops.pipeline.stage_02_prepare_base_model import PrepareBaseModelTrainingP
 from Mlops.pipeline.stage_03_training import TrainingPipeline
 from Mlops.pipeline.stage_04_model_evaluation import EvaluationPipeline
 
-# from Mlops.pipeline.stage_03_model_training import ModelTrainingPipeline
-# sudo apt install nvidia-cuda-toolkit
-# from Mlops.pipeline.stage_04_model_evaluation import EvaluationPipeline
+# export MLFLOW_TRACKING_URI=https://dagshub.com/Stanlito-AI/Mlops_kidney_disease.mlflow
+#
+# export MLFLOW_TRACKING_USERNAME=Stanlito-AI
+#
+# export MLFLOW_TRACKING_PASSWORD=f616a6150e177ffd52787126e7241eeb312f247f
 
 
 STAGE_NAME = "Data Ingestion stage"
