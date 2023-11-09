@@ -14,6 +14,7 @@ class Training:
         self.steps_per_epoch = None
         self.train_generator = None
         self.valid_generator = None
+        self.class_names = None  # Store class names
         self.config = config
 
     def get_base_model(self):
@@ -22,7 +23,6 @@ class Training:
         )
 
     def train_valid_generator(self):
-
         datagenerator_kwargs = dict(
             rescale=1. / 255,
             validation_split=0.20
@@ -44,6 +44,11 @@ class Training:
             shuffle=False,
             **dataflow_kwargs
         )
+
+        # Store class names from the valid generator
+        self.class_names = list(self.valid_generator.class_indices.keys())
+        print(self.class_names)
+        print("Class Names:", self.class_names)
 
         if self.config.params_is_augmentation:
             train_datagenerator = tf.keras.preprocessing.image.ImageDataGenerator(
@@ -85,3 +90,6 @@ class Training:
             path=self.config.trained_model_path,
             model=self.model
         )
+
+        # Print class names
+        print("Class Names:", self.class_names)

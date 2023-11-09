@@ -39,12 +39,12 @@ class PrepareBaseModel:
             for layer in model.layers[:-freeze_till]:
                 layer.trainable = False
 
-        # flatten_in = tf.keras.layers.Flatten()(model.output)
         x = tf.keras.layers.GlobalAveragePooling2D()(model.output)
+        flatten_in = tf.keras.layers.Flatten()(x)
         prediction = tf.keras.layers.Dense(
             units=classes,
             activation="softmax"
-        )(x)
+        )(flatten_in)
 
         full_model = tf.keras.models.Model(
             inputs=model.input,
